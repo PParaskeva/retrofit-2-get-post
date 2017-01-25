@@ -11,5 +11,6 @@ public interface IContract_PostData {
     public interface IView_PostData extends BasedView<IContract_PostData.IPresenter_PostData>{
         public void showProgressDialog();
         public void dismissProgressDialog();
+        public void transferToProfile();
     }
 }

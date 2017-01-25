@@ -6,9 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.example.panagiotis.retrofit2_post_get.MainActivity;
 import com.example.panagiotis.retrofit2_post_get.R;
 import com.example.panagiotis.retrofit2_post_get.postData.IContract_PostData;
 import com.example.panagiotis.retrofit2_post_get.postData.PostData_Presenter;
@@ -23,8 +24,8 @@ public class Login_Fragment extends Fragment implements IContract_PostData.IView
 
     private ProgressDialog pDialog;
     private IContract_PostData.IPresenter_PostData iPresenter_postData;
-    @BindView(R.id.login_password) TextView loginPassword;
-    @BindView(R.id.login_user_name) TextView loginUserName;
+    @BindView(R.id.login_password) EditText loginPassword;
+    @BindView(R.id.login_user_name) EditText loginUserName;
     @BindView(R.id.login_picture) ImageView loginImage;
 
     @Override
@@ -66,6 +67,11 @@ public class Login_Fragment extends Fragment implements IContract_PostData.IView
         if(pDialog.isShowing() || pDialog!=null){
             pDialog.dismiss();
         }
+    }
+
+    @Override
+    public void transferToProfile() {
+        ((MainActivity)getActivity()).fragment_transfer(new Profile_Fragment());
     }
 
     @Override

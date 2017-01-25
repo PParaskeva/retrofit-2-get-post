@@ -14,9 +14,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Connection {
     private static Retrofit retrofit;
-    private static OkHttpClient okHttpClient;
 
     public static IData getConnection_Post(){
+
         Interceptor interceptor = new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
@@ -24,9 +24,11 @@ public class Connection {
                 return chain.proceed(newRequest);
             }
         };
+
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.interceptors().add(interceptor);
         OkHttpClient client = builder.build();
+
         retrofit=new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -52,7 +54,7 @@ public class Connection {
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(okHttpClient)
+                .client(client)
                 .build();
 
         return retrofit.create(IData.class);
