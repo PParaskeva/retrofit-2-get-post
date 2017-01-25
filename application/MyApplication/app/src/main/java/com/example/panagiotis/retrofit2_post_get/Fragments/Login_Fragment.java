@@ -6,10 +6,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.panagiotis.retrofit2_post_get.R;
 import com.example.panagiotis.retrofit2_post_get.postData.IContract_PostData;
 import com.example.panagiotis.retrofit2_post_get.postData.PostData_Presenter;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
@@ -17,6 +23,9 @@ public class Login_Fragment extends Fragment implements IContract_PostData.IView
 
     private ProgressDialog pDialog;
     private IContract_PostData.IPresenter_PostData iPresenter_postData;
+    @BindView(R.id.login_password) TextView loginPassword;
+    @BindView(R.id.login_user_name) TextView loginUserName;
+    @BindView(R.id.login_picture) ImageView loginImage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,7 +36,16 @@ public class Login_Fragment extends Fragment implements IContract_PostData.IView
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.fragment_login_, container, false);
+        ButterKnife.bind(this,v);
+
         return v;
+    }
+    @OnClick(R.id.login_button)
+    public void loginFunction(){
+        iPresenter_postData.postData(
+                String.valueOf(loginUserName.getText()),
+                String.valueOf(loginPassword.getText())
+        );
     }
 
     @Override

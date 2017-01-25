@@ -31,7 +31,7 @@ public class Connection {
                 .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(okHttpClient)
+                .client(client)
                 .build();
 
         return retrofit.create(IData.class);
