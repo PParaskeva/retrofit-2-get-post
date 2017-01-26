@@ -35,4 +35,13 @@
         android:layout_marginTop="13dp"
         android:id="@+id/Profile_Password"
         android:textSize="18sp" />
+
+    <Button
+        android:text="Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Profile_Password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="68dp"
+        android:id="@+id/logoutButton" />
 </RelativeLayout>

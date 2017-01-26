@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.panagiotis.retrofit2_post_get.Constants.Constants;
+import com.example.panagiotis.retrofit2_post_get.MainActivity;
 import com.example.panagiotis.retrofit2_post_get.R;
 import com.example.panagiotis.retrofit2_post_get.getData.GetData_Presenter;
 import com.example.panagiotis.retrofit2_post_get.getData.IContract_GetData;
@@ -110,6 +111,18 @@ public class Profile_Fragment extends Fragment implements IContract_GetData.IVie
         startActivityForResult(intent, Constants.REQUEST_CODE);
     }
 
+    @OnClick(R.id.logoutButton)
+    public void logoutMethod(){
+        realm = Realm.getDefaultInstance();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.delete(User_local_data.class);
+            }
+        });
+        ((MainActivity)getActivity()).fragment_transfer(new Login_Fragment());
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -122,6 +135,7 @@ public class Profile_Fragment extends Fragment implements IContract_GetData.IVie
                 stream = getActivity().getContentResolver().openInputStream(data.getData());
                 bitmap = BitmapFactory.decodeStream(stream);
                 profileImage.setImageBitmap(bitmap);
+                realm = Realm.getDefaultInstance();
                 final User_local_data userLocalData = realm.where(User_local_data.class).findFirst();
 
                 realm.executeTransaction(new Realm.Transaction() {
