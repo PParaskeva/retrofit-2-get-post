@@ -5,7 +5,8 @@ import com.example.panagiotis.retrofit2_post_get.MVP.BasedView;
 
 public interface IContract_PostData {
     public interface IPresenter_PostData extends BasedPresenter{
-        public void postData(String email,String password);
+        public void postData(String email,String password,String imageURI);
+        public void postImageAvatar(String userid,String avatar);
     }
 
     public interface IView_PostData extends BasedView<IContract_PostData.IPresenter_PostData>{

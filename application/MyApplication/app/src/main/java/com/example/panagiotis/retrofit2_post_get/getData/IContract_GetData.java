@@ -11,6 +11,7 @@ import com.example.panagiotis.retrofit2_post_get.pojo.post.get.ServerResults;
 public interface IContract_GetData {
     public interface IPresenter_GetData extends BasedPresenter {
         public void GetData(String userID,String token);
+        public void postImageAvatar(String userid,String avatar);
     }
 
     public interface IView_GetData extends BasedView<IContract_GetData.IPresenter_GetData> {

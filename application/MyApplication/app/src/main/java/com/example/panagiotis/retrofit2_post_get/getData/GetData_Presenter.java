@@ -2,6 +2,8 @@ package com.example.panagiotis.retrofit2_post_get.getData;
 
 import com.example.panagiotis.retrofit2_post_get.Services.Connection;
 import com.example.panagiotis.retrofit2_post_get.Services.IData;
+import com.example.panagiotis.retrofit2_post_get.pojo.post.Avatar;
+import com.example.panagiotis.retrofit2_post_get.pojo.post.User;
 import com.example.panagiotis.retrofit2_post_get.pojo.post.get.ServerResults;
 
 import rx.Observer;
@@ -38,6 +40,31 @@ public class GetData_Presenter implements IContract_GetData.IPresenter_GetData {
                     @Override
                     public void onNext(ServerResults serverResults) {
                         iView_getData.presentUserData(serverResults);
+                    }
+                });
+    }
+
+    @Override
+    public void postImageAvatar(String userid, String avatar) {
+        iView_getData.showProgressDialog();
+        iData= Connection.getConnection_Post();
+        iData.postAvatar(userid,new Avatar(avatar))
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<User>() {
+                    @Override
+                    public void onCompleted() {
+                        iView_getData.dismissProgressDialog();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iView_getData.dismissProgressDialog();
+                    }
+
+                    @Override
+                    public void onNext(User user) {
+
                     }
                 });
     }

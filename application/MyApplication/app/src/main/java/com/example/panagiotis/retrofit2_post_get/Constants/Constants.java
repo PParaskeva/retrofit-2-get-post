@@ -9,4 +9,7 @@ public class Constants {
     public static final String Relative_Post_Details_URL="session";
     public static final String Relative_Get_Details_URL="users";
     public static String UserID="";
+    public static String token="";
+    public static final int REQUEST_CODE = 1;
+
 }

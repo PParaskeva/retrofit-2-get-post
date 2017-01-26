@@ -1,6 +1,7 @@
 package com.example.panagiotis.retrofit2_post_get.Services;
 
 import com.example.panagiotis.retrofit2_post_get.Constants.Constants;
+import com.example.panagiotis.retrofit2_post_get.pojo.post.Avatar;
 import com.example.panagiotis.retrofit2_post_get.pojo.post.PostRespond;
 import com.example.panagiotis.retrofit2_post_get.pojo.post.User;
 import com.example.panagiotis.retrofit2_post_get.pojo.post.get.ServerResults;
@@ -18,10 +19,16 @@ public interface IData {
             @Body User user
     );
 
+    @POST("users/{userid}/avatar")
+    Observable<User> postAvatar(
+            @Path("userid") String userid,
+            @Body Avatar avatar
+    );
+
     @GET("users/{userid}")
     Observable<ServerResults> getServerResults(
             @Path("userid") String userid
-    );
+            );
 
 
 }
